@@ -1,5 +1,6 @@
 package com.evergarden.crud_basic.entities;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -36,7 +37,7 @@ public class User implements Serializable {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
-		this.password = password;
+		this.password = BCrypt.withDefaults().hashToString(12, password.toCharArray());
 	}
 
 	public Long getId() {

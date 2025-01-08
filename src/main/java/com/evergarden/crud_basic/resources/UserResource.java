@@ -38,6 +38,8 @@ public class UserResource {
 		obj =	service.insert(obj);
 		//forma correta de responder com hyperlink, respeitando o terceiro nível restfull concepts
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+//criar finduser by email para garantir apenas um
+		 obj.setPassword("");
 		return ResponseEntity.created(uri).body(obj);
 	}
 
